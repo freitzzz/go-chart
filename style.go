@@ -395,6 +395,7 @@ func (s Style) InheritFrom(defaults Style) (final Style) {
 
 	final.DotWidthProvider = s.DotWidthProvider
 	final.DotColorProvider = s.DotColorProvider
+	final.DotTooltipProvider = s.DotTooltipProvider
 
 	final.FillColor = s.GetFillColor(defaults.FillColor)
 	final.FontColor = s.GetFontColor(defaults.FontColor)
@@ -472,7 +473,7 @@ func (s Style) ShouldDrawStroke() bool {
 
 // ShouldDrawDot tells drawing functions if they should draw the dot.
 func (s Style) ShouldDrawDot() bool {
-	return (!s.DotColor.IsZero() && s.DotWidth > 0) || s.DotColorProvider != nil || s.DotWidthProvider != nil
+	return (!s.DotColor.IsZero() && s.DotWidth > 0) || s.DotColorProvider != nil || s.DotWidthProvider != nil || s.DotTooltipProvider != nil
 }
 
 // ShouldDrawFill tells drawing functions if they should draw the stroke.
