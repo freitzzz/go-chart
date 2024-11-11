@@ -131,6 +131,11 @@ func (rr *rasterRenderer) Circle(radius float64, x, y int) {
 	rr.gc.QuadCurveTo(xf-radius, yf+radius, xf-radius, yf) //9
 }
 
+// Not supported in PNG rendering. Defaults to calling [Circle].
+func (rr *rasterRenderer) Tooltip(tooltip string, radius float64, x, y int) {
+	rr.Circle(radius, x, y)
+}
+
 // SetFont implements the interface method.
 func (rr *rasterRenderer) SetFont(f *truetype.Font) {
 	rr.s.Font = f

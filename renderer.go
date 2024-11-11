@@ -63,6 +63,9 @@ type Renderer interface {
 	// Circle draws a circle at the given coords with a given radius.
 	Circle(radius float64, x, y int)
 
+	// Tooltip draws a circle at the given coords with a given radius and attaches a tooltip message.
+	Tooltip(tooltip string, radius float64, x, y int)
+
 	// SetFont sets a font for a text field.
 	SetFont(*truetype.Font)
 

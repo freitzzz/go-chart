@@ -49,3 +49,6 @@ type ColorProvider func(v, vmin, vmax float64) drawing.Color
 
 // DotColorProvider is a provider for dot color.
 type DotColorProvider func(xrange, yrange Range, index int, x, y float64) drawing.Color
+
+// DotTooltipProvider is a provider for showing tooltips on hovering dots. Only works in SVG rendering.
+type DotTooltipProvider func(index int) string

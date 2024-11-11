@@ -169,6 +169,11 @@ func (vr *vectorRenderer) Circle(radius float64, x, y int) {
 	vr.c.Circle(x, y, int(radius), vr.s.GetFillAndStrokeOptions())
 }
 
+// Tooltip applies a tooltip message to [Circle].
+func (vr *vectorRenderer) Tooltip(tooltip string, radius float64, x, y int) {
+	vr.c.TooltipCircle(tooltip, x, y, int(radius), vr.s.GetFillAndStrokeOptions())
+}
+
 // SetFont implements the interface method.
 func (vr *vectorRenderer) SetFont(f *truetype.Font) {
 	vr.s.Font = f
@@ -278,6 +283,10 @@ func (c *canvas) Text(x, y int, body string, style Style) {
 
 func (c *canvas) Circle(x, y, r int, style Style) {
 	c.w.Write([]byte(fmt.Sprintf(`<circle cx="%d" cy="%d" r="%d" %s/>`, x, y, r, c.styleAsSVG(style))))
+}
+
+func (c *canvas) TooltipCircle(tooltip string, x, y, r int, style Style) {
+	c.w.Write([]byte(fmt.Sprintf(`<circle cx="%d" cy="%d" r="%d" %s><title>%s</title></circle>`, x, y, r, c.styleAsSVG(style), tooltip)))
 }
 
 func (c *canvas) End() {

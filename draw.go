@@ -78,7 +78,13 @@ func (d draw) LineSeries(r Renderer, canvasBox Box, xrange, yrange Range, style 
 				r.SetStrokeColor(dotColor)
 			}
 
-			r.Circle(dotWidth, x, y)
+			if style.DotTooltipProvider != nil {
+				tooltip := style.DotTooltipProvider(i)
+				r.Tooltip(tooltip, dotWidth, x, y)
+			} else {
+				r.Circle(dotWidth, x, y)
+			}
+
 			r.FillStroke()
 		}
 	}
